@@ -82,23 +82,28 @@ html, body {
     position: relative;
 
     input {
+      font-size: 14px;
+      font-weight: normal;
       background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      //border-width: 0 0 1px 0;
+      border : 1px solid #DBDFE4;
+      //border-color: $search-box-border-color;
+      padding: 4px 0 5px 30px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
       color: $nav-text;
-      border-radius: 0; /* ios has a default border radius */
+      border-radius: 25px; /* ios has a default border radius */
     }
-
+    input:focus{
+      border : 1px solid #3640F5;
+    }
     &:before {
       position: absolute;
-      top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      top: 18px;
+      left: $nav-padding + 10 ; //search icon picture adjustment
+      color: #ABB0BA;           //color of search icon
       @extend %icon-search;
     }
   }
@@ -119,13 +124,17 @@ html, body {
     }
 
     li {
+      font-weight:600;
+      color:#6D75F6;
       margin: 1em $nav-padding;
-      line-height: 1;
+
     }
 
     a {
-      color: $nav-text;
+      font-weight:bold;
+      color: #555DF7;
       text-decoration: none;
+
 
       &:hover {
         text-decoration: underline;
@@ -151,8 +160,16 @@ html, body {
     transition-duration: 200ms;
   }
 
+  li:hover
+  {
+    background-color: #d3dce9;
+  }
+
   // This is the currently selected ToC entry
   .toc-link.active {
+    transition-property: background;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -161,6 +178,11 @@ html, body {
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+   &:hover
+   {
+    background-color:#d3dce9 ;
+   }
+
   }
 
   .toc-list-h2 {
@@ -175,22 +197,25 @@ html, body {
   }
 
   .toc-footer {
+    background-color: $footer_color;
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    //border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: #000;
       text-decoration: none;
     }
 
-    a:hover {
+    li:hover {
+      background-color: white !important;
       text-decoration: underline;
     }
 
     li {
+      font-weight: normal;
       font-size: 0.8em;
-      line-height: 1.7;
+      line-height: 1.3;
       text-decoration: none;
     }
   }
@@ -251,7 +276,7 @@ html, body {
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
-  background-color: $main-bg;
+  background-color: #fff;
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
@@ -271,15 +296,21 @@ html, body {
   }
 
   .lang-selector {
+    //box-sizing: border-box;
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    //border-top: 2.5px solid $lang-select-active-bg;
+    //border-bottom: 2.5px solid $lang-select-active-bg;
   }
 }
 
 .lang-selector {
+  border-color:#1E1E32;
+  border-style:solid;
+  border-width: 0.01em;
+  margin : 15px;
+  border-radius : 7px;
   background-color: $lang-select-bg;
-  width: 100%;
   font-weight: bold;
   a {
     display: block;
@@ -291,11 +322,13 @@ html, body {
     outline: 0;
 
     &:active, &:focus {
+      text-decoration: none;
       background-color: $lang-select-pressed-bg;
       color: $lang-select-pressed-text;
     }
 
     &.active {
+      border-radius : 7px;
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
     }
@@ -336,7 +369,7 @@ html, body {
   }
 
   &>ul, &>ol {
-    padding-left: $main-padding + 15px;
+    padding-left: $main-padding + 25px;
   }
 
   // the div is the tocify hidden div for placeholding stuff
@@ -345,15 +378,17 @@ html, body {
   }
 
   h1 {
+    color:#1E1E24;
     @extend %header-font;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    border-top: 1.5px solid #ccc;
+    border-bottom: 1.5px solid #ccc;
+    background-color: #fff;
+    font-weight: 700;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -362,14 +397,16 @@ html, body {
   }
 
   h2 {
+    color:#1E1E24;
     @extend %header-font;
-    font-size: 19px;
-    margin-top: 4em;
+    font-size: 24px;
+    margin-top: 2em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    font-weight: 500;
   }
 
   // h2s right after h1s should bump right up
@@ -380,9 +417,11 @@ html, body {
   }
 
   h3, h4, h5, h6 {
+    color:#1E1E24;
+    font-weight: 500;
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
+    font-size: 16px;
+    margin-top: 2.2em;
     margin-bottom: 0.8em;
   }
 
@@ -400,6 +439,7 @@ html, body {
     margin-bottom: 1em;
     overflow: auto;
     th,td {
+      color:#1E1E24;
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
@@ -415,6 +455,7 @@ html, body {
     }
 
     td {
+      color:#1E1E24;
       padding: 10px;
     }
 
@@ -427,7 +468,7 @@ html, body {
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: lighten($main-bg,2%);
     }
   }
 
@@ -439,7 +480,13 @@ html, body {
     margin-left: 15px;
   }
 
-  p, li, dt, dd {
+  li {
+    line-height: 2;
+    margin-top: 0;
+  }
+  p, dt, dd {
+    font-size:15px;
+    color:#636670;
     line-height: 1.6;
     margin-top: 0;
   }
@@ -449,6 +496,10 @@ html, body {
   }
 
   code {
+    font-size:13px;
+    background-color:#F5F7FA ;
+    color:#1E1E24;
+    font-family:"Consolas";
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
@@ -461,13 +512,88 @@ html, body {
     padding: 0;
   }
 
+  span {
+    white-space: pre-wrap;
+    &.post,&.put {
+        font-family: monaco, Consolas, "Lucida Console", monospace;
+        background-color:#3640F5;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        color:white;
+        padding:1px 3px;
+        font-size:13px;
+        font-weight:normal;
+        display: inline-block;
+    }
+    &.delete {
+        font-family: monaco, Consolas, "Lucida Console", monospace;
+        background-color:#E61C1C;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        color:white;
+        padding:1px 3px;
+        font-size:13px;
+        font-weight:normal;
+        display: inline-block;
+
+    }
+    &.get {
+        font-family: monaco, Consolas, "Lucida Console", monospace;
+        background-color:#088732;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        color:white;
+        padding:1px 3px;
+        font-size:13px;
+        font-weight:normal;
+        display: inline-block;
+    }
+    &.url {
+        font-family: monaco, Consolas, "Lucida Console", monospace;
+        white-space: pre-wrap;
+        background-color:#F2F2F2;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        color:#1E1E24;
+        padding:1px 5px;
+        font-size:13px;
+        font-weight:normal;
+        display: inline-block;
+    }
+
+  }
+
+  a:link
+   {
+        text-decoration:none !important;
+   }
+   a:hover
+   {
+        text-decoration:underline !important;
+   }
+   a:visited
+   {
+        color:#3640F5 !important;
+   }
+
   aside {
+    color:white !important;
     padding-top: 1em;
     padding-bottom: 1em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+
+    a:link{
+        color:white !important;
+        text-decoration:underline !important;
+    }
+
+    a:visited{
+        color:white !important;
+        text-decoration:underline !important;
+    }
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -497,9 +623,9 @@ html, body {
   }
 
   .search-highlight {
-    padding: 2px;
-    margin: -3px;
-    border-radius: 4px;
+    padding: 0.4px;
+    margin: 5px;
+    border-radius: 6px;
     border: 1px solid #F7E633;
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
